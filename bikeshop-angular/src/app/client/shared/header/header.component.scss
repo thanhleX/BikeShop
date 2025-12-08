@@ -1,0 +1,135 @@
+.warpper {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 1000;
+}
+
+.logo {
+    font-family: "Teko", sans-serif;
+    color: #000;
+    transition: color 0.3s;
+}
+
+.logo:hover {
+    color: #6c757d;
+}
+
+.menu-toggle, .cart-toggle button {
+    transition: all 0.3s;
+}
+
+.menu-toggle:hover, .cart-toggle button:hover {
+    background-color: #f8f9fa;
+}
+
+/* Side Navigation */
+.side-nav {
+    height: 100vh;
+    width: 300px;
+    position: fixed;
+    z-index: 1050;
+    top: 0;
+    left: -300px;
+    background-color: #fff;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    transition: left 0.3s ease;
+}
+
+.side-nav.active {
+    left: 0;
+}
+
+.category-item {
+    position: relative;
+}
+
+.category-item a {
+    transition: background-color 0.3s;
+}
+
+.category-item a:hover {
+    background-color: #f8f9fa;
+}
+
+.submenu {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.submenu li a {
+    transition: background-color 0.3s;
+}
+
+.submenu li a:hover {
+    background-color: #e9ecef;
+}
+
+/* Shopping Cart */
+.shopping-cart {
+    height: 100vh;
+    width: 350px;
+    position: fixed;
+    z-index: 1050;
+    top: 0;
+    right: -350px;
+    background-color: #fff;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    transition: right 0.3s ease;
+}
+
+.shopping-cart.active {
+    right: 0;
+}
+
+.cart-content {
+    overflow-y: auto;
+}
+
+.cart-item {
+    transition: background-color 0.3s;
+}
+
+.cart-item:hover {
+    background-color: #f8f9fa;
+}
+
+.quantity-controls input {
+    -moz-appearance: textfield;
+}
+
+.quantity-controls input::-webkit-outer-spin-button,
+.quantity-controls input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1040;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .side-nav, .shopping-cart {
+        width: 100%;
+    }
+    
+    .side-nav {
+        left: -100%;
+    }
+    
+    .shopping-cart {
+        right: -100%;
+    }
+    
+    .logo {
+        font-size: 1.5rem !important;
+    }
+}

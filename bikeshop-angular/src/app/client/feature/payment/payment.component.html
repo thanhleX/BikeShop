@@ -1,0 +1,24 @@
+<div class="container">
+  <!-- Success State -->
+  <div class="text-center mt-5" *ngIf="isSuccess === true">
+    <h1 class="text-success mb-4">Thank You for Your Purchase!</h1>
+    <h2 class="mb-3">Your Order ID: <strong>{{ orderId }}</strong></h2>
+    <h2 class="mb-3">We have sent an email to you</h2>
+    <h2 class="mb-4">The order will be checked. Wait for response!</h2>
+    <button class="btn btn-primary" (click)="home()">Keep shopping</button>
+  </div>
+
+  <!-- Error State -->
+  <div class="text-center mt-5" *ngIf="isSuccess === false">
+    <h2 class="text-danger mb-4">Something Went Wrong</h2>
+    <p class="mb-4">Please check again!</p>
+    <button class="btn btn-secondary">Try Again</button>
+  </div>
+</div>
+
+<!-- Loading Overlay -->
+<div *ngIf="isSubmitting" class="d-flex justify-content-center align-items-center position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-50" style="z-index: 1050;">
+  <div class="spinner-border text-light" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>

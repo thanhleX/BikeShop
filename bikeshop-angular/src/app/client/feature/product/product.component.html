@@ -1,0 +1,100 @@
+<div class="container-fluid">
+    <!-- Sub Category Title -->
+    <div class="row mb-4">
+        <div class="col-2">
+            <h2 class="fw-bold text-capitalize">Search</h2>
+        </div>
+        <div class="col-8">
+            <h2 class="fw-bold text-capitalize">{{ productSubCategoryName }}</h2>
+        </div>
+    </div>
+
+    <!-- Products Grid with offset columns -->
+    <div class="row g-4">
+        <!-- Left margin - 2 columns -->
+        <div class="col-2"></div>
+
+        <!-- Products area - 8 columns -->
+        <div class="col-8">
+            <div class="row g-4">
+                <div class="col-md-4" *ngFor="let item of products">
+                    <div class="card product-card h-100 shadow-sm">
+                        <!-- Product Image -->
+                        <img [src]="item.thumbnailUrl" [alt]="item.name" class="card-img-top product-image"
+                            [routerLink]="[item.name]">
+
+                        <div class="card-body d-flex flex-column">
+                            <!-- Product Name -->
+                            <h5 class="card-title fw-bold mb-3">{{ item.name }}</h5>
+
+                            <!-- Product Details -->
+                            <div class="product-details mb-3">
+                                <div class="detail-item mb-2">
+                                    <span class="fw-semibold">Weight:</span> {{ item.weight }} kg
+                                </div>
+
+                                <!-- Materials -->
+                                <div class="detail-item mb-2" *ngIf="item.productDetailDtoList[0]?.productMaterialDto">
+                                    <div>
+                                        <span class="fw-semibold">Material:</span>
+                                    </div>
+                                    <span *ngFor="let productDetail of uniqueMaterials(item.productDetailDtoList); let last = last">
+                                        <span *ngIf="productDetail.productMaterialDto">
+                                            {{ productDetail.productMaterialDto.material }}<span *ngIf="!last"> • </span>
+                                        </span>
+                                    </span>
+                                </div>
+
+                                <!-- Colors -->
+                                <div class="detail-item">
+                                    <span class="fw-semibold">Colors:</span>
+                                    <div class="d-flex mt-1">
+                                        <div *ngFor="let productDetail of uniqueColor(item.productDetailDtoList)"
+                                            class="color-circle me-1"
+                                            [ngStyle]="{'background-color': productDetail.productColorDto.color}"
+                                            [title]="productDetail.productColorDto.color">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Price -->
+                            <div class="mt-auto">
+                                <div class="price fw-bold text-primary fs-5">
+                                    {{ item.price | currency:'USD':'symbol':'1.0-0' }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right margin - 2 columns -->
+        <div class="col-2"></div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="row mt-5">
+        <div class="col-12 d-flex justify-content-center">
+            <nav aria-label="Product pagination">
+                <ul class="pagination">
+                    <li class="page-item" [class.disabled]="productPage === 0">
+                        <a class="page-link" (click)="previousPage()" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item" *ngFor="let page of getPageNumbers()"
+                        [class.active]="page === productPage + 1">
+                        <a class="page-link" (click)="goToPage(page - 1)">{{ page }}</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" (click)="nextPage()" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

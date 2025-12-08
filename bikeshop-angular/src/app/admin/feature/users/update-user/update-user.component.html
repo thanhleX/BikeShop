@@ -1,0 +1,48 @@
+<div class="container p-5 pt-2">
+  <h1>Update User</h1>
+  <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="fullName" class="form-label">Full Name</label>
+      <input formControlName="fullName" id="fullName" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input formControlName="email" id="email" type="email" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="phone" class="form-label">Phone</label>
+      <input formControlName="phone" id="phone" class="form-control" required />
+    </div>
+
+    <div *ngIf="checkScope(['ADMIN']) && roles && roles.length > 0" formArrayName="roles" class="mb-3">
+      <label class="form-label">Roles</label>
+      <div *ngFor="let role of roles; let i = index">
+        <!-- bỏ qua role ADMIN -->
+        <ng-container *ngIf="i !== 0">
+          <input type="checkbox" [formControlName]="i" />
+          <label>{{ role.roleName }}</label>
+        </ng-container>
+      </div>
+    </div>
+
+    <!-- Hiển thị role dạng text cho NON-ADMIN -->
+    <div *ngIf="!checkScope(['ADMIN']) && roles && roles.length > 0" class="mb-3">
+      <label class="form-label">Roles</label>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let role of user.roles">
+          {{ role.roleName }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="mb-3">
+      <label for="image" class="form-label">Upload Image</label>
+      <input type="file" id="image" (change)="onFileSelected($event)" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="signUpForm.invalid">Update</button>
+    <button type="button" class="btn btn-danger ms-2" (click)="goBack()">Back</button>
+  </form>
+</div>

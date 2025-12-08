@@ -1,0 +1,54 @@
+<div class="container-fluid">
+  <!-- Category Title -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <h1 class="display-5 fw-bold text-capitalize mb-0">{{ productCategoryName }}</h1>
+    </div>
+  </div>
+
+  <!-- Sub Categories Grid -->
+  <div class="row g-4 mx-2">
+    <div class="col-md-4" *ngFor="let item of productSubCategories">
+      <div class="card subcategory-card h-100 border-0 shadow-sm">
+        <!-- Sub Category Image -->
+        <div class="image-container position-relative overflow-hidden">
+          <img [src]="item.thumbnailUrl" [alt]="item.name" class="card-img-top subcategory-image"
+            [routerLink]="[item.name]">
+
+          <!-- Sub Category Name Overlay -->
+          <div
+            class="subcategory-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
+            <a class="subcategory-title text-white fw-bold text-decoration-none fs-4 text-center"
+              [routerLink]="[item.name]">
+              {{ item.name }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGINATION (chỉ thêm, không chỉnh sửa giao diện đang có) -->
+  <div class="d-flex justify-content-center align-items-center mt-4" *ngIf="totalPages > 1">
+
+    <!-- Previous -->
+    <button class="btn btn-outline-secondary me-3" [disabled]="page === 0" (click)="previousPage()">
+      Previous
+    </button>
+
+    <!-- Page numbers -->
+    <ng-container *ngFor="let p of [].constructor(totalPages); let i = index">
+      <button class="btn" [class.btn-primary]="i === page" [class.btn-outline-primary]="i !== page"
+        (click)="goToPage(i)">
+        {{ i + 1 }}
+      </button>
+    </ng-container>
+
+    <!-- Next -->
+    <button class="btn btn-outline-secondary ms-3" [disabled]="page === totalPages - 1" (click)="nextPage()">
+      Next
+    </button>
+
+  </div>
+
+</div>

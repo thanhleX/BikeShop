@@ -1,0 +1,54 @@
+.warpper{
+    height: 10vh;
+}
+
+.notification {
+    position: fixed;
+    bottom: 4vh;
+    right: 4vh;
+    padding: 2vh;
+    background-color: #f8d7da;
+    color: #721c24;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0; 
+    transition: opacity 1s ease-out; 
+  }
+  
+  .show {
+    opacity: 1; 
+  }
+
+  i{
+    font-size: 30px;
+  }
+
+  .required{
+    color: red;
+    font-size: 20px;
+  }
+
+  .user {
+  cursor: pointer;
+}
+
+.user-menu {
+  position: absolute;
+  top: 35px;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  padding: 10px;
+  width: 160px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 1000;
+
+  a {
+    display: block;
+    padding: 6px;
+    cursor: pointer;
+  }
+  a:hover {
+    background: #f1f1f1;
+  }
+}

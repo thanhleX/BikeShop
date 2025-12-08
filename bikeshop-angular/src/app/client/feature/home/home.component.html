@@ -1,0 +1,151 @@
+<div class="home-container">
+    <!-- Main Banner Carousel -->
+    <section class="main-banner mb-5">
+        <div id="homeCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" *ngFor="let item of carousels; let i = index" data-bs-target="#homeCarousel"
+                    [attr.data-bs-slide-to]="i" [class.active]="i === 0" class="rounded-circle"
+                    style="width: 12px; height: 12px;">
+                </button>
+            </div>
+
+            <div class="carousel-inner rounded-3">
+                <div class="carousel-item" *ngFor="let item of carousels; let i = index" [class.active]="i === 0">
+                    <div class="carousel-image-wrapper">
+                        <img [src]="item.thumbnailUrl" class="d-block w-100 carousel-image"
+                            (click)="navigateToBlog(item.blogCategoryDto.name,item.id)" alt="Banner image">
+                        <div class="carousel-overlay"></div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#homeCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Models Section -->
+    <section class="models-section mb-5">
+        <div class="container">
+            <div class="section-header d-flex justify-content-between align-items-center mb-4">
+                <h2 class="section-title fw-bold mb-0">Our Models</h2>
+                <a [routerLink]="['product/Bikes']" class="view-all-link text-decoration-none">
+                    View All <i class="fa-solid fa-arrow-right ms-1"></i>
+                </a>
+            </div>
+
+            <div class="models-carousel">
+                <div id="modelsCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" *ngFor="let item of bikeCategories; let i = index"
+                            data-bs-target="#modelsCarousel" [attr.data-bs-slide-to]="i" [class.active]="i === 0"
+                            class="rounded-circle" style="width: 10px; height: 10px;">
+                        </button>
+                    </div>
+
+                    <div class="carousel-inner rounded-3">
+                        <div class="carousel-item" *ngFor="let item of bikeCategories; let i = index"
+                            [class.active]="i === 0">
+                            <a [routerLink]="['product',item.productCategoryDto.name,item.name]"
+                                class="text-decoration-none">
+                                <div class="model-card position-relative overflow-hidden rounded-3">
+                                    <img [src]="item.thumbnailUrl" class="d-block w-100 model-image" alt="Bike model">
+                                    <div
+                                        class="model-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-end">
+                                        <div class="model-info p-4 text-white">
+                                            <h4 class="model-name fw-bold mb-2">{{item.name}}</h4>
+                                            <p class="model-description mb-0">Discover the perfect ride</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#modelsCarousel"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon bg-white rounded-circle p-2" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#modelsCarousel"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon bg-white rounded-circle p-2" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Spare Parts Section -->
+    <section class="parts-section mb-5">
+        <div class="container">
+            <div class="section-header d-flex justify-content-between align-items-center mb-4">
+                <h2 class="section-title fw-bold mb-0">Spare Parts</h2>
+                <a [routerLink]="['product/Parts']" class="view-all-link text-decoration-none">
+                    View All <i class="fa-solid fa-arrow-right ms-1"></i>
+                </a>
+            </div>
+
+            <div class="parts-grid" appDivDragger>
+                <div class="row g-3">
+                    <div class="col-6 col-md-4 col-lg-3" *ngFor="let item of partCategories | slice:0:4">
+                        <a [routerLink]="['product',item.productCategoryDto.name ,item.name]"
+                            class="text-decoration-none">
+                            <div class="part-card h-100 rounded-3 overflow-hidden position-relative">
+                                <img [src]="item.thumbnailUrl" class="part-image w-100 h-100" alt="Part image">
+                                <div
+                                    class="part-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
+                                    <h5 class="part-name text-white fw-bold text-center mb-0 px-2">{{item.name}}</h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- News Section -->
+    <section class="news-section mb-5">
+        <div class="container">
+            <div class="section-header d-flex justify-content-between align-items-center mb-4">
+                <h2 class="section-title fw-bold mb-0">Latest News</h2>
+                <a [routerLink]="['blog/News']" class="view-all-link text-decoration-none">
+                    View All <i class="fa-solid fa-arrow-right ms-1"></i>
+                </a>
+            </div>
+
+            <div class="news-grid" appDivDragger>
+                <div class="row g-4">
+                    <div class="col-12 col-md-6 col-lg-4" *ngFor="let item of news">
+                        <a [routerLink]="['/blog',item.blogCategoryDto.name, item.id]" class="text-decoration-none">
+                            <div class="news-card h-100 rounded-3 overflow-hidden shadow-sm">
+                                <div class="news-image-wrapper position-relative">
+                                    <img [src]="item.thumbnailUrl" class="news-image w-100" alt="News image">
+                                    <div
+                                        class="news-category position-absolute top-0 start-0 bg-primary text-white px-3 py-1 m-3 rounded-pill small">
+                                        {{item.blogCategoryDto.name}}
+                                    </div>
+                                </div>
+                                <div class="news-content p-3">
+                                    <h5 class="news-title fw-bold mb-2 text-dark">{{ item.title }}</h5>
+                                    <p class="news-excerpt text-muted small mb-0"
+                                        [innerHTML]="item.description || 'Read more about this exciting news...'">
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,150 @@
+<div class="container-fluid mt-4">
+  <div class="row">
+    <!-- Product Images Section -->
+    <div class="col-lg-8 col-md-7 mb-4">
+      <!-- Main Image -->
+      <div class="card main-image-card mb-3">
+        <img 
+          [src]="selectedImg" 
+          [alt]="product?.name"
+          class="card-img-top main-image"
+          style="cursor: zoom-in;">
+      </div>
+
+      <!-- Thumbnail Images -->
+      <div class="thumbnail-container">
+        <div class="d-flex gap-2 overflow-auto pb-2" appDivDragger>
+          <div 
+            class="thumbnail-item flex-shrink-0" 
+            *ngFor="let image of filteredImages"
+            [class.thumbnail-active]="selectedImg === image.url">
+            <img 
+              [src]="image.url" 
+              [alt]="product?.name"
+              class="thumbnail-image"
+              (click)="selectImg(image.url)">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Info Section -->
+    <div class="col-lg-4 col-md-5">
+      <div class="product-info-card card h-100">
+        <div class="card-body">
+          <!-- Category & Name -->
+          <div class="category-section mb-3 pb-3 border-bottom">
+            <span class="badge bg-secondary mb-2">{{ product?.productSubCategoryDto?.name }}</span>
+            <h1 class="h3 fw-bold text-dark">{{ product?.name }}</h1>
+          </div>
+
+          <!-- Color Selection -->
+          <div class="color-section mb-4 pb-3 border-bottom">
+            <h6 class="fw-semibold mb-3">Color</h6>
+            <div class="d-flex flex-wrap gap-2">
+              <button 
+                *ngFor="let color of productColors"
+                class="btn color-btn p-0 rounded-circle"
+                [style.background-color]="color.color"
+                [class.color-btn-active]="selectedColor === color.color"
+                [disabled]="!isColorAvailable(color.color)"
+                (click)="selectColor(color.color)"
+                [title]="getColorTooltip(color.color)">
+                <span class="visually-hidden">{{ color.color }}</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Handlebar Selection -->
+          <div class="handlebar-section mb-4 pb-3 border-bottom" *ngIf="availableHandlebars.length > 0">
+            <h6 class="fw-semibold mb-3">Handlebar</h6>
+            <div class="d-flex flex-wrap gap-2">
+              <button 
+                *ngFor="let handlebar of availableHandlebars"
+                class="btn btn-outline-secondary handlebar-btn"
+                [class.btn-primary]="selectedHandlebar === handlebar.style"
+                [disabled]="!isHandlebarAvailable(handlebar.style)"
+                (click)="selectHandlebar(handlebar.style)">
+                {{ handlebar.style }}
+              </button>
+            </div>
+          </div>
+
+          <!-- Material Selection -->
+          <div class="material-section mb-4 pb-3 border-bottom" *ngIf="availableMaterials.length > 0">
+            <h6 class="fw-semibold mb-3">Material</h6>
+            <div class="d-flex flex-wrap gap-2">
+              <button 
+                *ngFor="let material of availableMaterials"
+                class="btn btn-outline-secondary material-btn"
+                [class.btn-primary]="selectedMaterial === material.material"
+                [disabled]="!isMaterialAvailable(material.material)"
+                (click)="selectMaterial(material.material)">
+                {{ material.material }}
+              </button>
+            </div>
+          </div>
+
+          <!-- Price & Stock -->
+          <div class="price-section mb-4">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <h3 class="h2 fw-bold text-primary mb-0">{{ product?.price | currency:'USD':'symbol':'1.0-0' }}</h3>
+              <span class="badge bg-success" *ngIf="currentProductDetail?.stock">
+                {{ currentProductDetail?.stock }} in stock
+              </span>
+            </div>
+          </div>
+
+          <!-- Quantity & Add to Cart -->
+          <div class="cart-section">
+            <div class="row g-3 align-items-center">
+              <div class="col-auto">
+                <div class="quantity-selector d-flex align-items-center">
+                  <button 
+                    class="btn btn-outline-secondary"
+                    (click)="decrease()"
+                    [disabled]="counter === 0">
+                    <i class="fa-solid fa-minus"></i>
+                  </button>
+                  <input 
+                    type="number" 
+                    [value]="counter" 
+                    readonly
+                    class="form-control text-center mx-2"
+                    style="width: 80px;" disabled>
+                  <button 
+                    class="btn btn-outline-secondary"
+                    (click)="increase()"
+                    [disabled]="!currentProductDetail || counter >= currentProductDetail.stock">
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="col">
+                <button 
+                  class="btn btn-primary btn-lg w-100 add-to-cart-btn"
+                  (click)="addToCart()"
+                  [disabled]="counter === 0 || !currentProductDetail">
+                  <i class="bi bi-cart-plus me-2"></i>
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Description -->
+  <div class="row mt-5">
+    <div class="col-12">
+      <div class="card description-card">
+        <div class="card-body p-4">
+          <h4 class="card-title mb-4">Product Description</h4>
+          <div [innerHTML]="trustedHtml" class="product-description"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,74 @@
+<footer class="footer bg-light pt-5 pb-4 mt-5 border-top">
+    <div class="container">
+        <div class="row">
+            <!-- About Us Section -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="footer-section">
+                    <h5 class="footer-title mb-3 fw-bold">About Us</h5>
+                    <div class="footer-links d-flex flex-column">
+                        <a *ngFor="let item of aboutUs" 
+                           [routerLink]="['blog',item.blogCategoryDto.name,item.id]"
+                           class="footer-link text-muted mb-2 text-decoration-none">
+                            {{item.title}}
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Support Section -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="footer-section">
+                    <h5 class="footer-title mb-3 fw-bold">Support</h5>
+                    <div class="footer-links d-flex flex-column">
+                        <a *ngFor="let item of support" 
+                           [routerLink]="['blog',item.blogCategoryDto.name,item.id]"
+                           class="footer-link text-muted mb-2 text-decoration-none">
+                            {{item.title}}
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Legal Section -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="footer-section">
+                    <h5 class="footer-title mb-3 fw-bold">Legal</h5>
+                    <div class="footer-links d-flex flex-column">
+                        <a *ngFor="let item of legal" 
+                           [routerLink]="['blog',item.blogCategoryDto.name,item.id]"
+                           class="footer-link text-muted mb-2 text-decoration-none">
+                            {{item.title}}
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media Section -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="footer-section">
+                    <h5 class="footer-title mb-3 fw-bold">Connect with BikeShop</h5>
+                    <div class="social-icons d-flex justify-content-center justify-content-lg-start">
+                        <a href="#" class="social-icon text-decoration-none me-3">
+                            <i class="fa-brands fa-facebook fa-2x"></i>
+                        </a>
+                        <a href="#" class="social-icon text-decoration-none me-3">
+                            <i class="fa-brands fa-x-twitter fa-2x"></i>
+                        </a>
+                        <a href="#" class="social-icon text-decoration-none">
+                            <i class="fa-brands fa-youtube fa-2x"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright Section -->
+        <div class="row mt-4 pt-3 border-top">
+            <div class="col-12 text-center">
+                <p class="text-muted mb-0">
+                    &copy; {{currentYear}} BikeShop. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>

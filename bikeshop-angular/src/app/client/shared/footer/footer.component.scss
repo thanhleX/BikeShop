@@ -1,0 +1,130 @@
+.footer {
+    background-color: #f8f9fa;
+}
+
+.footer-title {
+    color: #2c3e50;
+    font-size: 1.1rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.footer-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background-color: #6c757d;
+}
+
+.footer-link {
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    position: relative;
+    padding-left: 0.5rem;
+}
+
+.footer-link::before {
+    content: '›';
+    position: absolute;
+    left: -0.5rem;
+    color: #6c757d;
+    transition: transform 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #2c3e50 !important;
+    padding-left: 1rem;
+    text-decoration: none !important;
+}
+
+.footer-link:hover::before {
+    transform: translateX(0.2rem);
+}
+
+.social-icon {
+    color: #6c757d;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.social-icon:hover {
+    color: #fff;
+    background-color: #2c3e50;
+    transform: translateY(-2px);
+}
+
+/* Specific colors for social media icons */
+.social-icon:nth-child(1):hover { background-color: blue; } /* Facebook */
+.social-icon:nth-child(2):hover { background-color: black; } /* X */
+.social-icon:nth-child(3):hover { background-color: red; } /* YouTube */
+
+.newsletter input {
+    border: 1px solid #dee2e6;
+    border-right: none;
+}
+
+.newsletter input:focus {
+    box-shadow: none;
+    border-color: #6c757d;
+}
+
+.newsletter .btn {
+    border: 1px solid #2c3e50;
+}
+
+.newsletter .btn:hover {
+    background-color: #34495e;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .footer-section {
+        text-align: center;
+    }
+    
+    .footer-title::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .social-icons {
+        justify-content: center !important;
+    }
+    
+    .footer-link:hover {
+        padding-left: 0.5rem;
+    }
+    
+    .footer-link::before {
+        display: none;
+    }
+}
+
+/* Animation for links */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.footer-link {
+    animation: slideIn 0.3s ease forwards;
+}
+
+.footer-link:nth-child(1) { animation-delay: 0.1s; }
+.footer-link:nth-child(2) { animation-delay: 0.2s; }
+.footer-link:nth-child(3) { animation-delay: 0.3s; }
+.footer-link:nth-child(4) { animation-delay: 0.4s; }

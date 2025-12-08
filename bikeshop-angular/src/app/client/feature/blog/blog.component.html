@@ -1,0 +1,49 @@
+<div class="blog-container">
+    <!-- Blog Header -->
+    <div class="blog-header bg-light py-5 mb-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 col-xl-8">
+                    <!-- Breadcrumb -->
+                    <nav aria-label="breadcrumb" class="mb-3">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a [routerLink]="['/']" class="text-decoration-none">Home</a></li>
+                            <li class="breadcrumb-item"><a [routerLink]="['/blog/News']" class="text-decoration-none">Blog</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{blogDetail?.title}}</li>
+                        </ol>
+                    </nav>
+                    
+                    <!-- Title and Metadata -->
+                    <h1 class="blog-title display-5 fw-bold text-dark mb-3">{{blogDetail?.title}}</h1>
+                    <p class="blog-subtitle lead text-muted mb-4">{{blogDetail?.subTitle}}</p>
+                    
+                    <!-- Meta Information -->
+                    <div class="blog-meta d-flex align-items-center flex-wrap gap-4">
+                        <div class="publish-date d-flex align-items-center">
+                            <i class="fa-regular fa-calendar me-2 text-primary"></i>
+                            <span class="text-muted">{{blogDetail?.createdAt | date:'mediumDate'}}</span>
+                        </div>
+                        <div class="category d-flex align-items-center" *ngIf="blogDetail?.blogCategoryDto">
+                            <i class="fa-regular fa-folder me-2 text-primary"></i>
+                            <span class="text-muted">{{blogDetail?.blogCategoryDto?.name}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blog Content -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-8">
+
+                <!-- Blog Content -->
+                <article class="blog-content">
+                    <div class="ql-editor" [innerHTML]="description"></div>
+                </article>
+                
+            </div>
+        </div>
+    </div>
+</div>

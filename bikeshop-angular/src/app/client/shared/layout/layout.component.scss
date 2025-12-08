@@ -1,0 +1,14 @@
+/* styles.css hoặc component chính */
+.app-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1 0 auto;
+}
+
+app-footer {
+    flex-shrink: 0;
+}
