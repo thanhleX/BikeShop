@@ -33,7 +33,7 @@ public class ProductHandlebarController {
     }
 
     @PostMapping
-    public ApiResponse<ProductHandlebarResponse> addNewProductHandlebar(CreateNewProductHandlebarRequest request) {
+    public ApiResponse<ProductHandlebarResponse> addNewProductHandlebar(@RequestBody CreateNewProductHandlebarRequest request) {
         return ApiResponse.<ProductHandlebarResponse>builder()
                 .result(productHandlebarService.addNewProductHandlebar(request))
                 .build();
@@ -41,7 +41,7 @@ public class ProductHandlebarController {
 
     @PutMapping("/{id}")
     public ApiResponse<ProductHandlebarResponse> updateProductHandlebarById(
-            @PathVariable Long id, UpdateProductHandlebarRequest request) {
+            @PathVariable Long id, @RequestBody UpdateProductHandlebarRequest request) {
         return ApiResponse.<ProductHandlebarResponse>builder()
                 .result(productHandlebarService.updateProductHandlebarById(request, id))
                 .build();

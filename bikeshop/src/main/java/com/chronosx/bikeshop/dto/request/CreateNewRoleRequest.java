@@ -11,5 +11,4 @@ import lombok.*;
 @Builder
 public class CreateNewRoleRequest {
     private String roleName;
-    private List<Long> permissionId;
 }

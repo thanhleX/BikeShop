@@ -33,7 +33,7 @@ public class ProductMaterialController {
     }
 
     @PostMapping
-    public ApiResponse<ProductMaterialResponse> addNewProductMaterial(CreateNewProductMaterialRequest request) {
+    public ApiResponse<ProductMaterialResponse> addNewProductMaterial(@RequestBody CreateNewProductMaterialRequest request) {
         return ApiResponse.<ProductMaterialResponse>builder()
                 .result(productMaterialService.addNewProductMaterial(request))
                 .build();
@@ -41,7 +41,7 @@ public class ProductMaterialController {
 
     @PutMapping("/{id}")
     public ApiResponse<ProductMaterialResponse> updateProductMaterialById(
-            @PathVariable Long id, UpdateProductMaterialRequest request) {
+            @PathVariable Long id, @RequestBody UpdateProductMaterialRequest request) {
         return ApiResponse.<ProductMaterialResponse>builder()
                 .result(productMaterialService.updateProductMaterialById(request, id))
                 .build();

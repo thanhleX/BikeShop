@@ -1,7 +1,6 @@
 package com.chronosx.bikeshop.service.serviceImpl;
 
 import java.io.IOException;
-import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
